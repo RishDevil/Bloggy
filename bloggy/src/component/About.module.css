@@ -1,0 +1,153 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  height: 100%;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 300vh;
+  background-color: black;
+  justify-content: center;
+}
+.content {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  top: 200vh;
+
+  justify-content: center;
+}
+.section_img {
+  position: absolute;
+  position: fixed;
+  top: 0;
+
+  width: 100%;
+  height: 100vh;
+
+  justify-content: center;
+  clip-path: circle(0px at center);
+  background-repeat: no-repeat;
+  transition: 0.1s ease-in-out;
+  overflow: hidden;
+}
+.img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  /* background: url(priya.jpg); */
+  height: 100vh;
+  width: 50%;
+  background-size: cover;
+}
+.description {
+  position: relative;
+
+  color: pink;
+  width: 60%;
+  height: 100vh;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.title {
+  position: relative;
+  background: blue;
+  top: 200px;
+  z-index: 1;
+  left: 25%;
+  border: 1px solid red;
+  text-align: center;
+  width: 50%;
+}
+.name_content {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  z-index: 100;
+}
+.name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) perspective(500px) rotateY(-15deg);
+  height: 50px;
+  width: 400px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 30px;
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, #3603ff, #a41ee9);
+  color: white;
+  border-radius: 25px;
+  transition: 1s;
+  text-shadow: 6px 3px 2px black;
+  overflow: hidden;
+  animation-name: ani;
+
+  animation-duration: 5s;
+  animation-timing-function: linear;
+
+  animation-iteration-count: infinite;
+}
+.description p {
+  padding: 2px;
+  font-size: 24px;
+}
+.name:before {
+  content: "";
+  position: absolute;
+  left: -200px;
+  top: 0px;
+  height: 50px;
+  width: 400px;
+  background: linear-gradient(90deg, transparent, white);
+  border-radius: 25px;
+  transition: 0.5s;
+  animation-name: anis;
+
+  animation-duration: 5s;
+  animation-timing-function: linear;
+
+  animation-iteration-count: infinite;
+}
+@keyframes ani {
+  0% {
+    text-shadow: -6px 3px 2px black;
+    transform: translate(-50%, -50%) perspective(500px) rotateY(15deg);
+  }
+
+  50% {
+    text-shadow: 6px 3px 2px black;
+    transform: translate(-50%, -50%) perspective(500px) rotateY(-15deg);
+  }
+  100% {
+    text-shadow: -6px 3px 2px black;
+    transform: translate(-50%, -50%) perspective(500px) rotateY(15deg);
+  }
+}
+
+@keyframes anis {
+  0% {
+    left: 400px;
+    top: 0px;
+  }
+
+  50% {
+    left: -500px;
+    top: 0px;
+  }
+  100% {
+    left: 400px;
+    top: 0px;
+  }
+}

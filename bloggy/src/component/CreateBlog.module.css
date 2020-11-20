@@ -1,0 +1,28 @@
+.contain {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100vw;
+  justify-content: space-evenly;
+  /* align-items: center; */
+  padding: 15px;
+}
+.create {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.blog {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 20px;
+}
+
+.ul {
+  list-style: none;
+}
+.li {
+  text-decoration: none;
+  margin: 20px;
+  color: white;
+}
