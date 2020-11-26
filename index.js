@@ -35,11 +35,10 @@ app.use("/api/uploads", upload);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("bloggy/build"));
   console.log("production");
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "bloggy", "build", "index.html"));
-  });
 }
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "bloggy", "build", "index.html"));
+});
 app.post("/blogcreate", async (req, res) => {
   Blog.create(req.body, (err, data) => {
     if (err) {
