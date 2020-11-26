@@ -15,6 +15,7 @@ import { blogList, blogSearchAction } from "../action/Blog";
 
 const Home = (props) => {
   const [toggle, settoggle] = useState(false);
+  const [toggle2, settoggle2] = useState(false);
 
   const handleOpen = () => {
     if (toggle) {
@@ -22,6 +23,15 @@ const Home = (props) => {
     } else {
       console.log("enter");
       settoggle(true);
+    }
+  };
+
+  const handleOpen2 = () => {
+    if (toggle2) {
+      settoggle2(false);
+    } else {
+      console.log("enter");
+      settoggle2(true);
     }
   };
 
@@ -44,6 +54,7 @@ const Home = (props) => {
   // }, [search]);
   const click = () => {
     settoggle(false);
+    settoggle2(false);
   };
 
   return (
@@ -88,7 +99,9 @@ const Home = (props) => {
               Signin
             </Link>
           </div>
-          <div className={styles.dot}>...</div>
+          <div className={styles.dot} onClick={() => handleOpen2()}>
+            {toggle2 ? <CloseIcon /> : "..."}
+          </div>
         </div>
       </div>
 
@@ -99,12 +112,28 @@ const Home = (props) => {
           data={search ? newData : blog}
           teller={search ? "newData" : "data"}
         /> */}
-        <div
-          className={
-            toggle ? [styles.card, styles.cardscale].join(" ") : styles.card
-          }
-        >
-          {props.children}
+        <div className={styles.sub_container}>
+          {toggle2 && (
+            <div className={styles.toggle}>
+              <div className={styles.home2}>
+                <Link to={"/"} style={{ textDecoration: "none" }}>
+                  Home
+                </Link>
+              </div>
+              <div className={styles.sign2}>
+                <Link to={"/signin"} style={{ textDecoration: "none" }}>
+                  Signin
+                </Link>
+              </div>
+            </div>
+          )}
+          <div
+            className={
+              toggle ? [styles.card, styles.cardscale].join(" ") : styles.card
+            }
+          >
+            {props.children}
+          </div>
         </div>
       </div>
     </div>
