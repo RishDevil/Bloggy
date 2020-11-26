@@ -34,6 +34,7 @@ app.use("/api/uploads", upload);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("bloggy/build"));
+  console.log("production");
 
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "bloggy", "build", "index.html"));
@@ -162,5 +163,5 @@ app.post("/register", async (req, res) => {
 });
 
 app.listen(process.env.PORT || 2000, () => {
-  console.log("listenning  ");
+  console.log("listenning  ", process.env.PORT || 2000);
 });
