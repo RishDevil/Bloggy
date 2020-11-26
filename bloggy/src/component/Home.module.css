@@ -156,6 +156,8 @@
     inset -10px -10px 5px rgba(255, 255, 255, 0.2);
 }
 .dot {
+  right: 0;
+  position: absolute;
   color: white;
   visibility: hidden;
   margin-right: 50px;
@@ -249,8 +251,5 @@
   }
   .sign2 {
     visibility: visible;
-  }
-  .left {
-    width: 200px;
   }
 }

@@ -77,7 +77,6 @@ const Home = (props) => {
             </div>
           </Link>
         </div>
-
         <div className={styles.search}>
           <input
             className={styles.input}
@@ -99,9 +98,9 @@ const Home = (props) => {
               Signin
             </Link>
           </div>
-          <div className={styles.dot} onClick={() => handleOpen2()}>
-            {toggle2 ? <CloseIcon /> : "..."}
-          </div>
+        </div>{" "}
+        <div className={styles.dot} onClick={() => handleOpen2()}>
+          {toggle2 ? <CloseIcon /> : "..."}
         </div>
       </div>
 
