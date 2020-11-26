@@ -22,6 +22,7 @@ try {
   mongoose.connect(MONGOURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
   });
   //mongodb+srv://rish:<password>@cluster0.kjvxf.mongodb.net/test
   console.log("conected....", __dirname);
@@ -31,7 +32,7 @@ try {
 app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
 app.use("/api/uploads", upload);
 
-if (process.env.NODE_ENV == "production") {
+if (process.env.NODE_ENV === "production") {
   app.use(express.static("bloggy/build"));
 
   app.get("*", (req, res) => {
@@ -72,11 +73,6 @@ app.get("/blogD/:id", async (req, res) => {
   });
 });
 
-app.get("/api", (req, res) => {
-  console.log("dirname ", __dirname);
-
-  res.send({ data: "access" });
-});
 app.put("/blogupdate/:id", async (req, res) => {
   try {
     let id = req.params.id;
@@ -166,5 +162,5 @@ app.post("/register", async (req, res) => {
 });
 
 app.listen(process.env.PORT || 2000, () => {
-  console.log("listenning");
+  console.log("listenning  ");
 });
