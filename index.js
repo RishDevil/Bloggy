@@ -32,7 +32,7 @@ app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
 app.use("/api/uploads", upload);
 
 if (process.env.NODE_ENV == "production") {
-  app.use(express.static("npm startbloggy/build"));
+  app.use(express.static("bloggy/build"));
 
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "bloggy", "build", "index.html"));
