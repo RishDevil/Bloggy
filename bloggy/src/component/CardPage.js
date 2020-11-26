@@ -8,7 +8,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { blogList, blogSearchAction } from "../action/Blog";
 
 const CardPage = (props) => {
-  console.log("cardPage");
   const dispatch = useDispatch();
   const { blog } = useSelector((state) => state.blogList);
   const { search } = useSelector((state) => state.blogSearch);
@@ -17,7 +16,6 @@ const CardPage = (props) => {
   const [error, seterror] = useState("");
 
   useEffect(() => {
-    console.log("bloglist");
     dispatch(blogList());
     if (search && blog) {
       setnewData(
@@ -32,7 +30,6 @@ const CardPage = (props) => {
   useEffect(() => {
     jquery("document").ready(function () {
       jquery(`.${styles.card_container}`).on("mousemove", function (e) {
-        console.log("enter");
         var x = -(
           jquery(this).height() / 2 +
           jquery(this).offset().top -
@@ -52,7 +49,6 @@ const CardPage = (props) => {
       });
 
       jquery(`.${styles.card_container}`).on("mouseout", function (e) {
-        console.log("out");
         jquery(this).css({
           transform:
             "scale(1) perspective(600px) rotateX(" +
@@ -64,8 +60,7 @@ const CardPage = (props) => {
       });
     });
   });
-  console.log("cardpage", props.data, "teller  ", props.teller);
-  console.log(blog, "cadrpage");
+
   return (
     <div
       className={

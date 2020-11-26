@@ -88,6 +88,7 @@ const Home = (props) => {
               Signin
             </Link>
           </div>
+          <div className={styles.dot}>...</div>
         </div>
       </div>
 

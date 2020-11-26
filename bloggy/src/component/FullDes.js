@@ -14,7 +14,7 @@ const FullDes = (props) => {
   useEffect(() => {
     dispatch(blogDetailAction(data));
   }, []);
-  console.log(blog);
+
   return (
     <React.Fragment>
       {blog ? (

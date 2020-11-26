@@ -17,6 +17,8 @@ import {
 } from "../constant/BlogConstant";
 
 function BlogListReducer(state = { blog: [] }, action) {
+  console.log(action.type);
+
   switch (action.type) {
     case BLOG_LIST_REQUEST:
       return { loading: true };

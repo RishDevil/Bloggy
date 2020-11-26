@@ -67,7 +67,6 @@ const CreateBlog = () => {
       })
       .catch((err) => {
         setupload(false);
-        console.log(err);
       });
   };
   const UpdateBlog = (blog) => {
