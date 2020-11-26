@@ -114,12 +114,12 @@ const Home = (props) => {
         <div className={styles.sub_container}>
           {toggle2 && (
             <div className={styles.toggle}>
-              <div className={styles.home2}>
+              <div className={styles.home2} onClick={() => click()}>
                 <Link to={"/"} style={{ textDecoration: "none" }}>
                   Home
                 </Link>
               </div>
-              <div className={styles.sign2}>
+              <div className={styles.sign2} onClick={() => click()}>
                 <Link to={"/signin"} style={{ textDecoration: "none" }}>
                   Signin
                 </Link>
