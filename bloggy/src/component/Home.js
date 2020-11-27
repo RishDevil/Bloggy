@@ -12,6 +12,7 @@ import priya from "./priya.jpg";
 import jquery from "jquery";
 import { useSelector, useDispatch } from "react-redux";
 import { blogList, blogSearchAction } from "../action/Blog";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 const Home = (props) => {
   const [toggle, settoggle] = useState(false);
@@ -100,7 +101,7 @@ const Home = (props) => {
           </div>
         </div>{" "}
         <div className={styles.dot} onClick={() => handleOpen2()}>
-          {toggle2 ? <CloseIcon /> : "..."}
+          {toggle2 ? <CloseIcon /> : <MoreVertIcon />}
         </div>
       </div>
 
@@ -113,7 +114,13 @@ const Home = (props) => {
         /> */}
         <div className={styles.sub_container}>
           {toggle2 && (
-            <div className={styles.toggle}>
+            <div
+              className={
+                toggle
+                  ? [styles.toggle, styles.cardscale2].join(" ")
+                  : styles.toggle
+              }
+            >
               <div className={styles.home2} onClick={() => click()}>
                 <Link to={"/"} style={{ textDecoration: "none" }}>
                   Home
