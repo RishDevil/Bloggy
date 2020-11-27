@@ -13,7 +13,7 @@ const Router = () => {
       <Route exact path="/about" component={About} />
       <Route exact path="/" component={CardPage} />
       <Route exact path="/create" component={CreateBlog} />
-      <Route exact path="/fulldes" component={FullDes} />
+      <Route exact path="/fulldes/:id" component={FullDes} />
       <Route exact path="/signin" component={Signin} />
       <Route exact path="/register" component={Register} />
     </React.Fragment>

@@ -4,9 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { blogDetailAction } from "../action/Blog";
 
 const FullDes = (props) => {
-  const search = props.location.search;
-  const params = new URLSearchParams(search);
-  const data = params.get("data");
+  const data = props.match.params.id;
 
   const dispatch = useDispatch();
   const { blog } = useSelector((state) => state.blogDetail);
