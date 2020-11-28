@@ -65,7 +65,7 @@ const Home = (props) => {
           <div className={styles.open_button} onClick={() => handleOpen()}>
             {toggle ? <CloseIcon /> : <MenuIcon />}
           </div>
-          <Link to="#/about" style={{ textDecoration: "None" }}>
+          <Link to="/about" style={{ textDecoration: "None" }}>
             <div className={styles.red_upper}>
               <Avatar
                 alt="Priya"
@@ -95,7 +95,7 @@ const Home = (props) => {
           </div>
 
           <div className={styles.sign}>
-            <Link to={"#/signin"} style={{ textDecoration: "none" }}>
+            <Link to={"/signin"} style={{ textDecoration: "none" }}>
               Signin
             </Link>
           </div>
@@ -127,7 +127,7 @@ const Home = (props) => {
                 </Link>
               </div>
               <div className={styles.sign2} onClick={() => click()}>
-                <Link to={"#/signin"} style={{ textDecoration: "none" }}>
+                <Link to={"/signin"} style={{ textDecoration: "none" }}>
                   Signin
                 </Link>
               </div>

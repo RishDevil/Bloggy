@@ -7,7 +7,7 @@ const Card = ({ data }) => {
   return (
     <div className={styles.card_container}>
       <Link
-        to={"#/fulldes/" + data._id}
+        to={"/fulldes/" + data._id}
         className={styles.link}
         style={{ textDecoration: "None" }}
       >
