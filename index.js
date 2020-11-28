@@ -32,14 +32,6 @@ try {
 app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
 app.use("/api/uploads", upload);
 
-if (process.env.NODE_ENV === "production") {
-  console.log("production");
-  app.use(express.static("bloggy/build"));
-  app.get("", (req, res) => {
-    res.sendFile(path.join(__dirname, "bloggy/build/index.html"));
-  });
-}
-
 app.post("/blogcreate", async (req, res) => {
   Blog.create(req.body, (err, data) => {
     if (err) {
@@ -162,6 +154,13 @@ app.post("/register", async (req, res) => {
   });
 });
 
+if (process.env.NODE_ENV === "production") {
+  console.log("production");
+  app.use(express.static("bloggy/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "bloggy/build/index.html"));
+  });
+}
 app.listen(process.env.PORT || 2000, () => {
   console.log("listenning  ", process.env.PORT || 2000);
 });
