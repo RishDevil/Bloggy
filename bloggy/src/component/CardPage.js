@@ -27,39 +27,6 @@ const CardPage = (props) => {
     }
   }, [search]);
   const [getdata, setgetdata] = useState(false);
-  useEffect(() => {
-    jquery("document").ready(function () {
-      jquery(`.${styles.card_container}`).on("mousemove", function (e) {
-        var x = -(
-          jquery(this).height() / 2 +
-          jquery(this).offset().top -
-          e.pageY
-        );
-        var y =
-          jquery(this).width() / 2 + (jquery(this).offset().left - e.pageX);
-
-        jquery(this).css({
-          transform:
-            "scale(1.1) perspective(600px) rotateX(" +
-            x / 20 +
-            "deg) rotateY(" +
-            y / 20 +
-            "deg)",
-        });
-      });
-
-      jquery(`.${styles.card_container}`).on("mouseout", function (e) {
-        jquery(this).css({
-          transform:
-            "scale(1) perspective(600px) rotateX(" +
-            0 +
-            "deg) rotateY(" +
-            0 +
-            "deg)",
-        });
-      });
-    });
-  });
 
   return (
     <div

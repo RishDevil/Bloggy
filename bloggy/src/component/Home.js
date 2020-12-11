@@ -35,7 +35,7 @@ const Home = (props) => {
       settoggle2(true);
     }
   };
-
+  console.log("connection ", navigator.onLine);
   const dispatch = useDispatch();
   // const { blog } = useSelector((state) => state.blogList);
   // const { search } = useSelector((state) => state.blogSearch);

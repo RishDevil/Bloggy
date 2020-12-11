@@ -1,6 +1,11 @@
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
+const GridFsStorage = require("multer-gridfs-storage");
+const Grid = require("gridfs-stream");
+const { MONGOURI } = require("./config/keys");
+const crypto = require("crypto");
+const mongoose = require("mongoose");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -25,6 +30,7 @@ const router = express.Router();
 
 router.post("/", upload.single("image"), (req, res) => {
   console.log("imagesss");
-  res.send(`/${req.file.path}`);
+  res.send(`${req.file.filename}`);
 });
+
 module.exports = router;

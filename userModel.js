@@ -5,7 +5,10 @@ const blogSchema = mongoose.Schema({
   sub_des: { type: String, required: true },
   place: { type: String, required: true },
   country: { type: String, required: true },
-  image: { type: String, required: true },
+  image: {
+    data: Buffer,
+    contentType: String,
+  },
   des: { type: String, required: true },
   created_at: { type: Date, default: Date.now },
 });

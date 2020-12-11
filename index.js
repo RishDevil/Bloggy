@@ -7,6 +7,7 @@ const upload = require("./upload");
 const Blog = require("./userModel");
 const User = require("./userSign");
 const { MONGOURI } = require("./config/keys");
+const fs = require("fs");
 
 const app = express();
 ///////////////middleware
@@ -33,13 +34,28 @@ app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
 app.use("/api/uploads", upload);
 
 app.post("/blogcreate", async (req, res) => {
-  Blog.create(req.body, (err, data) => {
-    if (err) {
-      res.status(500).send({ message: err });
-    } else {
-      res.status(200).send({ data: data });
+  Blog.create(
+    {
+      title: req.body.title,
+      sub_des: req.body.sub_des,
+      des: req.body.des,
+      place: req.body.place,
+      country: req.body.country,
+      image: {
+        data: fs.readFileSync(
+          path.join(__dirname + "/uploads/" + req.body.image)
+        ),
+        contentType: "image/png",
+      },
+    },
+    (err, data) => {
+      if (err) {
+        res.status(500).send({ message: err });
+      } else {
+        res.status(200).send({ data: data });
+      }
     }
-  });
+  );
 });
 
 app.get("/blogs", async (req, res) => {
@@ -71,11 +87,17 @@ app.put("/blogupdate/:id", async (req, res) => {
     let id = req.params.id;
     const blog = await Blog.findOne({ _id: id });
     if (blog) {
-      (blog.title = req.body.title), (blog.sub_des = req.body.sub_des);
-      (blog.place = req.body.place),
-        (blog.country = req.body.country),
-        (blog.des = req.body.des),
-        (blog.image = req.body.image);
+      blog.title = req.body.title;
+      blog.sub_des = req.body.sub_des;
+      blog.place = req.body.place;
+      blog.country = req.body.country;
+      blog.des = req.body.des;
+      blog.image = {
+        data: fs.readFileSync(
+          path.join(__dirname + "/uploads/" + req.body.image)
+        ),
+        contentType: "image/png",
+      };
 
       const save = await blog.save();
 

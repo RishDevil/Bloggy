@@ -37,6 +37,8 @@ const CreateBlog = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (title && sub_des && place && country && image && des) {
+      console.log("image", image);
+
       alert("filled", title);
       if (id) {
         dispatch(
@@ -159,7 +161,10 @@ const CreateBlog = () => {
               <br />
               <br />
             </form>
-            <img src={image} style={{ width: "200px", height: "200px" }} />{" "}
+            <img
+              src={"/uploads/" + image}
+              style={{ width: "200px", height: "200px" }}
+            />{" "}
             <br /> <br />
           </div>
         ) : (
