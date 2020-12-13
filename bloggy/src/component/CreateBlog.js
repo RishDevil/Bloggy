@@ -10,6 +10,7 @@ import {
 } from "../action/Blog";
 
 const CreateBlog = () => {
+  console.log("Createblog");
   const [title, settitle] = useState("");
   const [place, setplace] = useState("");
   const [country, setcountry] = useState("");
@@ -25,7 +26,6 @@ const CreateBlog = () => {
   const { blog } = useSelector((state) => state.blogList);
   const { sav } = useSelector((state) => state.blogUpdates);
   const { created } = useSelector((state) => state.blogCreate);
-  console.log(del, "delll");
 
   const [create, setcreate] = useState(false);
   useEffect(() => {
@@ -176,7 +176,7 @@ const CreateBlog = () => {
           <li className={styles.li}>Blogs</li>
           {blog &&
             blog.map((blog) => (
-              <div>
+              <div data-aos="fade-up" data-aos-offset="50" data-aos-delay="100">
                 {" "}
                 <li className={styles.li}>
                   <p>

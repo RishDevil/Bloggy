@@ -25,8 +25,16 @@ const Signin = (props) => {
     <div className={styles.container}>
       <div className={styles.sign}>
         <form onSubmit={submit} className={styles.form}>
-          <div className={styles.error}>{serror}</div>
+          <div
+            className={styles.error}
+            data-aos="fade-zoom-in"
+            data-aos-delay="100"
+          >
+            {serror}
+          </div>
           <input
+            data-aos="fade-zoom-in"
+            data-aos-delay="100"
             className="input"
             onChange={(e) => setemail(e.target.value)}
             placeholder="Email"
@@ -35,6 +43,8 @@ const Signin = (props) => {
           <br />
 
           <input
+            data-aos="fade-zoom-in"
+            data-aos-delay="100"
             type="password"
             className="input"
             onChange={(e) => setpassword(e.target.value)}
@@ -42,7 +52,12 @@ const Signin = (props) => {
             className={styles.input}
           />
           <br />
-          <button type="submit" className={styles.button}>
+          <button
+            type="submit"
+            className={styles.button}
+            data-aos="fade-zoom-in"
+            data-aos-delay="100"
+          >
             Login
           </button>
         </form>

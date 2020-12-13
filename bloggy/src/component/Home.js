@@ -15,6 +15,8 @@ import { blogList, blogSearchAction } from "../action/Blog";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 const Home = (props) => {
+  console.log("Home");
+
   const [toggle, settoggle] = useState(false);
   const [toggle2, settoggle2] = useState(false);
 
@@ -22,7 +24,6 @@ const Home = (props) => {
     if (toggle) {
       settoggle(false);
     } else {
-      console.log("enter");
       settoggle(true);
     }
   };
@@ -31,11 +32,10 @@ const Home = (props) => {
     if (toggle2) {
       settoggle2(false);
     } else {
-      console.log("enter");
       settoggle2(true);
     }
   };
-  console.log("connection ", navigator.onLine);
+
   const dispatch = useDispatch();
   // const { blog } = useSelector((state) => state.blogList);
   // const { search } = useSelector((state) => state.blogSearch);
@@ -74,6 +74,8 @@ const Home = (props) => {
                   objectFit: "cover",
                   backgroundSize: "cover",
                 }}
+                data-aos="fade-zoom-in"
+                data-aos-delay="200"
               ></Avatar>
             </div>
           </Link>
@@ -85,16 +87,24 @@ const Home = (props) => {
             onChange={(e) => dispatch(blogSearchAction(e.target.value))}
           />
 
-          <SearchIcon />
+          <SearchIcon className={styles.srch} />
         </div>
         <div className={styles.left}>
-          <div className={styles.home}>
+          <div
+            className={styles.home}
+            data-aos="fade-zoom-in"
+            data-aos-delay="200"
+          >
             <Link to={"/"} style={{ textDecoration: "none" }}>
               Home
             </Link>
           </div>
 
-          <div className={styles.sign}>
+          <div
+            className={styles.sign}
+            data-aos="fade-zoom-in"
+            data-aos-delay="200"
+          >
             <Link to={"/signin"} style={{ textDecoration: "none" }}>
               Signin
             </Link>
@@ -113,12 +123,14 @@ const Home = (props) => {
           teller={search ? "newData" : "data"}
         /> */}
         <div className={styles.sub_container}>
-          {toggle2 && (
+          {
             <div
               className={
-                toggle
-                  ? [styles.toggle, styles.cardscale2].join(" ")
-                  : styles.toggle
+                toggle2
+                  ? toggle
+                    ? [styles.toggle, styles.cardscale2].join(" ")
+                    : [styles.toggle].join(" ")
+                  : [styles.toggle, styles.end].join(" ")
               }
             >
               <div className={styles.home2} onClick={() => click()}>
@@ -132,7 +144,7 @@ const Home = (props) => {
                 </Link>
               </div>
             </div>
-          )}
+          }
           <div
             className={
               toggle ? [styles.card, styles.cardscale].join(" ") : styles.card

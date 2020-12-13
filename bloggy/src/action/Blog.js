@@ -22,7 +22,7 @@ const blogList = () => async (dispatch) => {
   console.log("action");
 
   const { data } = await axios.get("/blogs");
-  console.log(data.data, "blog data");
+
   if (data.message) {
     console.log(data.message, "blog messages");
     dispatch({ type: BLOG_LIST_FAIL, payload: data.message });

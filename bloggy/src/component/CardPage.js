@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import styles from "./Home.module.css";
-import jquery from "jquery";
-import priya from "./priy.jpg";
+
 import Card from "./Card";
-import axios from "axios";
+
 import { useSelector, useDispatch } from "react-redux";
 import { blogList, blogSearchAction } from "../action/Blog";
 
 const CardPage = (props) => {
+  console.log("Cardpage");
   const dispatch = useDispatch();
   const { blog } = useSelector((state) => state.blogList);
   const { search } = useSelector((state) => state.blogSearch);
@@ -16,6 +16,7 @@ const CardPage = (props) => {
   const [error, seterror] = useState("");
 
   useEffect(() => {
+    console.log("Card page effect");
     dispatch(blogList());
     if (search && blog) {
       setnewData(
@@ -23,7 +24,6 @@ const CardPage = (props) => {
           (cd) => cd.title.toLowerCase().indexOf(search.toLowerCase()) >= 0
         )
       );
-      console.log(newData, "new ", data);
     }
   }, [search]);
   const [getdata, setgetdata] = useState(false);
@@ -42,4 +42,4 @@ const CardPage = (props) => {
   );
 };
 
-export default CardPage;
+export default memo(CardPage);

@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Home.module.css";
-import priya from "./priy.jpg";
+
 import { Link } from "react-router-dom";
 import jquery from "jquery";
-import { Buffer } from "Buffer";
-import { Base64 } from "base-64";
-// or if you prefer no Base64 namespace
-import { encode, decode } from "js-base64";
 
 const Card = (props) => {
+  console.log("Card");
+  const [img, setimg] = useState("");
+
   useEffect(() => {
+    console.log("Card effect");
     var base64Flag = "data:image/jpeg;base64,";
     var imageStr = arrayBufferToBase64(props.data.image.data.data);
 
-    console.log("iamgeee", imageStr);
     setimg(base64Flag + imageStr);
   }, []);
-  const [img, setimg] = useState("");
 
   const arrayBufferToBase64 = (buffer) => {
     var binary = "";
@@ -24,7 +22,7 @@ const Card = (props) => {
     bytes.forEach((b) => (binary += String.fromCharCode(b)));
     return window.btoa(binary);
   };
-  console.log(props.data.image.data.data, "image datat");
+
   const mouseMove = () => {
     jquery(`.${styles.card_container}`).on("mousemove", function (e) {
       var x = -(
@@ -61,6 +59,9 @@ const Card = (props) => {
       className={styles.card_container}
       onMouseOut={mouseLeave}
       onMouseMove={mouseMove}
+      data-aos="fade-up"
+      data-aos-offset="300"
+      data-aos-delay="100"
     >
       <Link
         to={"/fulldes/" + props.data._id}

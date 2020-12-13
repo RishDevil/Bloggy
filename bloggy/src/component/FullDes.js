@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { blogDetailAction } from "../action/Blog";
 
 const FullDes = (props) => {
+  console.log("Full Des");
+
   const id = props.match.params.id;
 
   const dispatch = useDispatch();
@@ -32,7 +34,6 @@ const FullDes = (props) => {
       var base64Flag = "data:image/jpeg;base64,";
       var imageStr = arrayBufferToBase64(blog.image.data.data);
 
-      console.log("iamgeee", imageStr);
       setimg(base64Flag + imageStr);
     }
   }, [blog]);
@@ -40,7 +41,7 @@ const FullDes = (props) => {
   return (
     <React.Fragment>
       {blog ? (
-        <div className={styles.full_des}>
+        <div className={styles.full_des} data-aos="fade-up">
           <div className={styles.image}>
             <img src={img} className={styles.img} />
           </div>

@@ -22,12 +22,20 @@ const Register = (props) => {
     <div className={styles.container}>
       <div className={styles.sign}>
         <form onSubmit={submit}>
-          <div className={styles.error}>{rrerror}</div>
+          <div
+            className={styles.error}
+            data-aos="fade-zoom-in"
+            data-aos-delay="100"
+          >
+            {rrerror}
+          </div>
           <input
             className="input"
             onChange={(e) => setusername(e.target.value)}
             className={styles.input}
             placeholder="UserName"
+            data-aos="fade-zoom-in"
+            data-aos-delay="100"
           />
           <br />
 
@@ -37,6 +45,8 @@ const Register = (props) => {
             className={styles.input}
             placeholder="UserName"
             placeholder="Email"
+            data-aos="fade-zoom-in"
+            data-aos-delay="100"
           />
           <br />
 
@@ -46,9 +56,16 @@ const Register = (props) => {
             onChange={(e) => setpassword(e.target.value)}
             className={styles.input}
             placeholder="Password"
+            data-aos="fade-zoom-in"
+            data-aos-delay="100"
           />
           <br />
-          <button type="submit" className={styles.button}>
+          <button
+            type="submit"
+            className={styles.button}
+            data-aos="fade-zoom-in"
+            data-aos-delay="100"
+          >
             Register
           </button>
         </form>
