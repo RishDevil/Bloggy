@@ -1,10 +1,12 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useState, useEffect, useMemo, memo } from "react";
 import styles from "./Home.module.css";
 
-import Card from "./Card";
-
+// import Card from "./Card";
+import loadable from "@loadable/component";
 import { useSelector, useDispatch } from "react-redux";
 import { blogList, blogSearchAction } from "../action/Blog";
+
+const Card = loadable(() => import("./Card"));
 
 const CardPage = (props) => {
   console.log("Cardpage");

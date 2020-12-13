@@ -8,6 +8,7 @@ const Blog = require("./userModel");
 const User = require("./userSign");
 const { MONGOURI } = require("./config/keys");
 const fs = require("fs");
+var compression = require("compression");
 
 const app = express();
 ///////////////middleware
@@ -16,7 +17,7 @@ app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(compression());
 //////////////////db
 
 try {

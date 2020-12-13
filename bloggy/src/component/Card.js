@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import styles from "./Home.module.css";
 
 import { Link } from "react-router-dom";
@@ -61,7 +61,6 @@ const Card = (props) => {
       onMouseMove={mouseMove}
       data-aos="fade-up"
       data-aos-offset="250"
-      data-aos-delay="100"
     >
       <Link
         to={"/fulldes/" + props.data._id}
@@ -78,4 +77,4 @@ const Card = (props) => {
   );
 };
 
-export default Card;
+export default memo(Card);
