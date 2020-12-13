@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import styles from "./Home.module.css";
 import Avatar from "@material-ui/core/Avatar";
 import { IconButton } from "@material-ui/core";
@@ -75,7 +75,7 @@ const Home = (props) => {
                   backgroundSize: "cover",
                 }}
                 data-aos="fade-zoom-in"
-                data-aos-delay="200"
+                data-aos-delay="500"
               ></Avatar>
             </div>
           </Link>
@@ -93,7 +93,7 @@ const Home = (props) => {
           <div
             className={styles.home}
             data-aos="fade-zoom-in"
-            data-aos-delay="200"
+            data-aos-delay="500"
           >
             <Link to={"/"} style={{ textDecoration: "none" }}>
               Home
@@ -103,7 +103,7 @@ const Home = (props) => {
           <div
             className={styles.sign}
             data-aos="fade-zoom-in"
-            data-aos-delay="200"
+            data-aos-delay="500"
           >
             <Link to={"/signin"} style={{ textDecoration: "none" }}>
               Signin

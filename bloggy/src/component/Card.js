@@ -60,7 +60,7 @@ const Card = (props) => {
       onMouseOut={mouseLeave}
       onMouseMove={mouseMove}
       data-aos="fade-up"
-      data-aos-offset="300"
+      data-aos-offset="250"
       data-aos-delay="100"
     >
       <Link
