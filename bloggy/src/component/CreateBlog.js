@@ -80,7 +80,7 @@ const CreateBlog = () => {
     settitle(blog.title);
     setsub_des(blog.sub_des);
     setdes(blog.des);
-    setimage(blog.image);
+    setimage("image");
     setplace(blog.place);
     setcountry(blog.country);
   };

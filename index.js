@@ -105,6 +105,7 @@ app.get("/blogD/:id", cacheMiddleware(30), async (req, res) => {
 });
 
 app.put("/blogupdate/:id", async (req, res) => {
+  console.log(req.body.image);
   try {
     let id = req.params.id;
     const blog = await Blog.findOne({ _id: id });
@@ -114,7 +115,7 @@ app.put("/blogupdate/:id", async (req, res) => {
       blog.place = req.body.place;
       blog.country = req.body.country;
       blog.des = req.body.des;
-      if (req.body.image !== "[object object]") {
+      if (req.body.image !== "image") {
         blog.image = {
           data: fs.readFileSync(
             path.join(__dirname + "/uploads/" + req.body.image)
