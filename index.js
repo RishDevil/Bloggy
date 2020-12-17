@@ -114,12 +114,14 @@ app.put("/blogupdate/:id", async (req, res) => {
       blog.place = req.body.place;
       blog.country = req.body.country;
       blog.des = req.body.des;
-      blog.image = {
-        data: fs.readFileSync(
-          path.join(__dirname + "/uploads/" + req.body.image)
-        ),
-        contentType: "image/png",
-      };
+      if (typeof req.body.image !== "object") {
+        blog.image = {
+          data: fs.readFileSync(
+            path.join(__dirname + "/uploads/" + req.body.image)
+          ),
+          contentType: "image/png",
+        };
+      }
 
       const save = await blog.save();
 
