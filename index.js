@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const cache = require("memory-cache");
 const path = require("path");
 const upload = require("./upload");
 const Blog = require("./userModel");
@@ -9,8 +10,8 @@ const User = require("./userSign");
 const { MONGOURI } = require("./config/keys");
 const fs = require("fs");
 var compression = require("compression");
-const redis = require("redis");
-const client = redis.createClient();
+let memCache = new cache.Cache();
+
 const app = express();
 ///////////////middleware
 
@@ -20,21 +21,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(compression());
 
-const redisMidleware = (req, res, next) => {
-  let key = "express" + req.originalUrl || req.url;
-
-  client.get(key, function (err, reply) {
-    if (reply) {
-      res.send(reply);
+let cacheMiddleware = (duration) => {
+  return (req, res, next) => {
+    let key = "__express__" + req.originalUrl || req.url;
+    let cacheContent = memCache.get(key);
+    if (cacheContent) {
+      res.send(cacheContent);
+      return;
     } else {
       res.sendResponse = res.send;
       res.send = (body) => {
-        client.set(key, JSON.stringify(body));
+        memCache.put(key, body, duration * 1000);
         res.sendResponse(body);
       };
       next();
     }
-  });
+  };
 };
 
 //////////////////db
@@ -78,7 +80,7 @@ app.post("/blogcreate", async (req, res) => {
   );
 });
 
-app.get("/blogs", redisMidleware, async (req, res) => {
+app.get("/blogs", cacheMiddleware(30), async (req, res) => {
   console.log("blogggggggg");
   Blog.find((err, data) => {
     if (err) {
@@ -89,7 +91,7 @@ app.get("/blogs", redisMidleware, async (req, res) => {
     }
   });
 });
-app.get("/blogD/:id", redisMidleware, async (req, res) => {
+app.get("/blogD/:id", cacheMiddleware(30), async (req, res) => {
   console.log("in detail");
   Blog.findById({ _id: req.params.id }, (err, data) => {
     if (err) {
