@@ -114,7 +114,7 @@ app.put("/blogupdate/:id", async (req, res) => {
       blog.place = req.body.place;
       blog.country = req.body.country;
       blog.des = req.body.des;
-      if (req.body.image == "[object object]") {
+      if (req.body.image !== "[object object]") {
         blog.image = {
           data: fs.readFileSync(
             path.join(__dirname + "/uploads/" + req.body.image)
