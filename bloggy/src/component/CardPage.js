@@ -1,10 +1,14 @@
-import React, { useState, useEffect, useMemo, memo } from "react";
+import React, { useState, useEffect, useMemo, memo, useRef } from "react";
 import styles from "./Home.module.css";
 
 // import Card from "./Card";
 import loadable from "@loadable/component";
 import { useSelector, useDispatch } from "react-redux";
 import { blogList, blogSearchAction } from "../action/Blog";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+gsap.core.globals("ScrollTrigger", ScrollTrigger);
 
 const Card = loadable(() => import("./Card"));
 
@@ -16,6 +20,7 @@ const CardPage = (props) => {
   const [data, setdata] = useState([]);
   const [newData, setnewData] = useState();
   const [error, seterror] = useState("");
+  const scroll = useRef(null);
 
   useEffect(() => {
     console.log("Card page effect");
@@ -29,13 +34,38 @@ const CardPage = (props) => {
     }
   }, [search]);
   const [getdata, setgetdata] = useState(false);
-
+  useEffect(() => {
+    gsap.fromTo(
+      scroll.current,
+      {
+        autoAlpha: 1,
+      },
+      {
+        autoAlpha: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: scroll.current,
+          start: "top center+=100",
+          end: "top center+=50",
+          toggleActions: "play none none reverse",
+        },
+      }
+    );
+  }, []);
   return (
     <div
       className={
         props.toggle ? [styles.card, styles.cardscale].join(" ") : styles.card
       }
     >
+      {blog ? (
+        <div ref={scroll} className={styles.scroll} style={{ color: "red" }}>
+          scroll down
+        </div>
+      ) : (
+        ""
+      )}
+
       {blog &&
         (search && newData ? newData : blog).map((cd) => (
           <Card key={cd._id} data={cd} />

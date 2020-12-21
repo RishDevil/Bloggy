@@ -59,7 +59,7 @@ const Card = (props) => {
       className={styles.card_container}
       onMouseOut={mouseLeave}
       onMouseMove={mouseMove}
-      data-aos="fade-up"
+      data-aos="zoom-out-up"
       data-aos-offset="250"
     >
       <Link

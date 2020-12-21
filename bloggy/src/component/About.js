@@ -37,28 +37,16 @@ const About = () => {
           <p>
             <h1>Smriti Choubey</h1>
           </p>
+          <p>I love travelling</p>
           <p>
-            I love
-            travellinggwiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
+            You meet so many strangers and mix with so many cultures. Different
+            languages are reaching your ears and sound like music. New people.
+            New transport. New currency. It all changes all the time and you
+            just go with the flow. You misread the train schedule and miss your
+            train? No worries. You are not really on a schedule… so why sweat
+            it? You shrug it off and go grab a beer. The more things change, the
+            more flexible you become.
           </p>
-          <p>
-            When was the last time you took a true vacation? Not a “let me just
-            check my work email” vacation, or a “finishing a blog post on the
-            plane” vacation, but a real, no contact, no schedule, mimosas at 10
-            am kind of escape? Unless you’re apart of the 28% of American
-            workers who actually use their max vacation time annually, you’re
-            probably overdue for some relaxation. Let’s say you have a locale in
-            mind—maybe a faraway destination you’ve always wanted to see—but you
-            don’t know where to begin researching hotels, car rentals, excursion
-            packages, and restaurants. Even aside from the travel logistics, you
-            probably want to read up on your destination’s local cultures and
-            customs—you don’t just want to walk like a robot from tourist
-            destination to tourist destination, buying a cheap keychain or shot
-            glass at each gift shop. You want to discover this place like a
-            local would, right? For that, you’ll need some well-rendered travel
-            content examples.
-          </p>
-          <button>know more</button>
         </div>
       </div>
     </div>
