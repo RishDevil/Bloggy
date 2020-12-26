@@ -58,13 +58,9 @@ const CardPage = (props) => {
         props.toggle ? [styles.card, styles.cardscale].join(" ") : styles.card
       }
     >
-      {blog ? (
-        <div ref={scroll} className={styles.scroll} style={{ color: "red" }}>
-          scroll down
-        </div>
-      ) : (
-        ""
-      )}
+      <div ref={scroll} className={styles.scroll} style={{ color: "red" }}>
+        scroll down
+      </div>
 
       {blog &&
         (search && newData ? newData : blog).map((cd) => (
