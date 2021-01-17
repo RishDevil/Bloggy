@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const fileUpload = require("express-fileupload");
 const cache = require("memory-cache");
 const path = require("path");
 const upload = require("./upload");
@@ -20,6 +21,11 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(compression());
+app.use(
+  fileUpload({
+    useTempFiles: true,
+  })
+);
 
 let cacheMiddleware = (duration) => {
   return (req, res, next) => {
@@ -48,7 +54,7 @@ try {
     useCreateIndex: true,
   });
   //mongodb+srv://rish:<password>@cluster0.kjvxf.mongodb.net/test
-  console.log("conected....", __dirname);
+  console.log("conected....db", __dirname);
 } catch (error) {
   console.log(error);
 }
@@ -63,12 +69,7 @@ app.post("/blogcreate", async (req, res) => {
       des: req.body.des,
       place: req.body.place,
       country: req.body.country,
-      image: {
-        data: fs.readFileSync(
-          path.join(__dirname + "/uploads/" + req.body.image)
-        ),
-        contentType: "image/png",
-      },
+      image: req.body.image,
     },
     (err, data) => {
       if (err) {
@@ -80,7 +81,12 @@ app.post("/blogcreate", async (req, res) => {
   );
 });
 
-app.get("/blogs", cacheMiddleware(30), async (req, res) => {
+app.get("/", (req, res) => {
+  console.log("/////");
+  res.send({ msg: "hello" });
+});
+
+app.get("/blogs", async (req, res) => {
   console.log("blogggggggg");
   Blog.find((err, data) => {
     if (err) {
@@ -115,14 +121,8 @@ app.put("/blogupdate/:id", async (req, res) => {
       blog.place = req.body.place;
       blog.country = req.body.country;
       blog.des = req.body.des;
-      if (req.body.image !== "image") {
-        blog.image = {
-          data: fs.readFileSync(
-            path.join(__dirname + "/uploads/" + req.body.image)
-          ),
-          contentType: "image/png",
-        };
-      }
+
+      blog.image = req.body.image;
 
       const save = await blog.save();
 
@@ -208,6 +208,8 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, "bloggy/build/index.html"));
   });
 }
-app.listen(process.env.PORT || 2000, () => {
+
+app.listen(2000, () => {
   console.log("listenning  ", process.env.PORT || 2000);
 });
+///process.env.PORT ||

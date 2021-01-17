@@ -9,19 +9,8 @@ const Card = (props) => {
   const [img, setimg] = useState("");
 
   useEffect(() => {
-    console.log("Card effect");
-    var base64Flag = "data:image/jpeg;base64,";
-    var imageStr = arrayBufferToBase64(props.data.image.data.data);
-
-    setimg(base64Flag + imageStr);
+    console.log(props.data);
   }, []);
-
-  const arrayBufferToBase64 = (buffer) => {
-    var binary = "";
-    var bytes = [].slice.call(new Uint8Array(buffer));
-    bytes.forEach((b) => (binary += String.fromCharCode(b)));
-    return window.btoa(binary);
-  };
 
   const mouseMove = () => {
     jquery(`.${styles.card_container}`).on("mousemove", function (e) {
@@ -67,7 +56,7 @@ const Card = (props) => {
         className={styles.link}
         style={{ textDecoration: "None" }}
       >
-        <img src={img} className={styles.card_img}></img>{" "}
+        <img src={props.data.image.url} className={styles.card_img}></img>{" "}
         <div className={styles.title}>{props.data.title.toUpperCase()}</div>
         <div className={styles.country}>{props.data.country.toUpperCase()}</div>
         <div className={styles.place}> {props.data.place.toUpperCase()}</div>

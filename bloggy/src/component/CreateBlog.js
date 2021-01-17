@@ -14,7 +14,7 @@ const CreateBlog = () => {
   const [title, settitle] = useState("");
   const [place, setplace] = useState("");
   const [country, setcountry] = useState("");
-  const [image, setimage] = useState("");
+  const [image, setimage] = useState();
   const [sub_des, setsub_des] = useState("");
   const [des, setdes] = useState("");
   const [upload, setupload] = useState(false);
@@ -46,7 +46,9 @@ const CreateBlog = () => {
         );
       } else {
         dispatch(blogCreateAction(title, sub_des, place, country, image, des));
+        console.log("created");
       }
+      setcreate(false);
     } else {
       alert("fill all details");
     }
@@ -54,7 +56,7 @@ const CreateBlog = () => {
   const uploads = (e) => {
     const file = e.target.files[0];
     const bodyFormData = new FormData();
-    bodyFormData.append("image", file);
+    bodyFormData.append("file", file);
     setupload(true);
     axios
       .post("/api/uploads/", bodyFormData, {
@@ -63,7 +65,7 @@ const CreateBlog = () => {
         },
       })
       .then((response) => {
-        console.log("pic");
+        console.log(response.data);
         setupload(false);
         setimage(response.data);
       })
@@ -80,7 +82,7 @@ const CreateBlog = () => {
     settitle(blog.title);
     setsub_des(blog.sub_des);
     setdes(blog.des);
-    setimage("image");
+    setimage(blog.image);
     setplace(blog.place);
     setcountry(blog.country);
   };
@@ -136,8 +138,7 @@ const CreateBlog = () => {
               <br /> <br />
               <input
                 type="text"
-                onChange={(e) => setimage(e.target.value)}
-                value={image}
+                value={image.public_id}
                 placeholder="image"
                 contentEditable="false"
               />
@@ -162,7 +163,7 @@ const CreateBlog = () => {
               <br />
             </form>
             <img
-              src={"/uploads/" + image}
+              src={image.url}
               style={{ width: "200px", height: "200px" }}
             />{" "}
             <br /> <br />
@@ -176,7 +177,7 @@ const CreateBlog = () => {
           <li className={styles.li}>Blogs</li>
           {blog &&
             blog.map((blog) => (
-              <div data-aos="fade-up" data-aos-offset="50" data-aos-delay="100">
+              <div data-aos="fade-up" data-aos-offset="50" data-aos-delay="10">
                 {" "}
                 <li className={styles.li}>
                   <p>

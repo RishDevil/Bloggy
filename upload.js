@@ -1,36 +1,59 @@
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
+const fs = require("fs");
+const cloudinary = require("cloudinary");
 const GridFsStorage = require("multer-gridfs-storage");
 const Grid = require("gridfs-stream");
 const { MONGOURI } = require("./config/keys");
 const crypto = require("crypto");
 const mongoose = require("mongoose");
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./uploads/");
-  },
-  filename: (req, file, cb) => {
-    console.log(file);
-    cb(null, "blog" + "-" + Date.now() + path.extname(file.originalname));
-  },
-});
-
-const fileFilter = (req, file, cb) => {
-  cb(null, true);
-};
-
-let upload = multer({
-  storage: storage,
-  fileFilter: fileFilter,
+cloudinary.config({
+  cloud_name: "duvsvsxhk",
+  api_key: "654997219996181",
+  api_secret: "JBSXu1uEL5oLUu0bD_lOYJ-RZxI",
 });
 
 const router = express.Router();
 
-router.post("/", upload.single("image"), (req, res) => {
-  console.log("imagesss");
-  res.send(`${req.file.filename}`);
+router.post("/", (req, res) => {
+  try {
+    if (!req.files || Object.keys(req.files).length === 0)
+      return res.status(400).json({ msg: "No files were uploaded." });
+
+    const file = req.files.file;
+    if (file.size > 1024 * 1024) {
+      removeTmp(file.tempFilePath);
+      return res.status(400).json({ msg: "Size too large" });
+    }
+
+    if (file.mimetype !== "image/jpeg" && file.mimetype !== "image/png") {
+      removeTmp(file.tempFilePath);
+      return res.status(400).json({ msg: "File format is incorrect." });
+    }
+
+    cloudinary.v2.uploader.upload(
+      file.tempFilePath,
+      { folder: "test" },
+      async (err, result) => {
+        if (err) throw err;
+
+        removeTmp(file.tempFilePath);
+
+        res.json({ public_id: result.public_id, url: result.secure_url });
+      }
+    );
+  } catch (err) {
+    return res.status(500).json({ msg: err.message });
+  }
+
+  //res.send(`${req.file.filename}`);
 });
+const removeTmp = (path) => {
+  fs.unlink(path, (err) => {
+    if (err) throw err;
+  });
+};
 
 module.exports = router;

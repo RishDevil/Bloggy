@@ -6,8 +6,8 @@ const blogSchema = mongoose.Schema({
   place: { type: String, required: true },
   country: { type: String, required: true },
   image: {
-    data: Buffer,
-    contentType: String,
+    type: Object,
+    require: true,
   },
   des: { type: String, required: true },
   created_at: { type: Date, default: Date.now },

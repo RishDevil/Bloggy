@@ -11,39 +11,20 @@ const FullDes = (props) => {
   const dispatch = useDispatch();
 
   const { blog } = useSelector((state) => state.blogDetail);
-
-  const [img, setimg] = useState("");
-
-  const arrayBufferToBase64 = (buffer) => {
-    var binary = "";
-    var bytes = [].slice.call(new Uint8Array(buffer));
-    bytes.forEach((b) => (binary += String.fromCharCode(b)));
-    return window.btoa(binary);
-  };
-
+  console.log(blog);
   useEffect(() => {
     dispatch(blogDetailAction(id));
-  }, []);
-
-  useEffect(() => {
-    if (
-      JSON.stringify(blog) !== JSON.stringify({}) &&
-      typeof blog != "undefined"
-    ) {
-      console.log(blog, "bloggy");
-      var base64Flag = "data:image/jpeg;base64,";
-      var imageStr = arrayBufferToBase64(blog.image.data.data);
-
-      setimg(base64Flag + imageStr);
-    }
-  }, [blog]);
+  }, [id]);
 
   return (
     <React.Fragment>
       {blog ? (
         <div className={styles.full_des} data-aos="fade-up">
           <div className={styles.image}>
-            <img src={img} className={styles.img} />
+            <img
+              src={blog.image ? blog.image.url : ""}
+              className={styles.img}
+            />
           </div>
           <div className={styles.upper}>
             <span>{blog.title}</span>
