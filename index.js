@@ -81,11 +81,6 @@ app.post("/blogcreate", async (req, res) => {
   );
 });
 
-app.get("/", (req, res) => {
-  console.log("/////");
-  res.send({ msg: "hello" });
-});
-
 app.get("/blogs", async (req, res) => {
   console.log("blogggggggg");
   Blog.find((err, data) => {
