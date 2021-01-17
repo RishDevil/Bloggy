@@ -209,7 +209,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.listen(2000, () => {
+app.listen(process.env.PORT || 2000, () => {
   console.log("listenning  ", process.env.PORT || 2000);
 });
-///process.env.PORT ||
+///
