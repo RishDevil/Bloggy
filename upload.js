@@ -1,18 +1,19 @@
 const express = require("express");
 const multer = require("multer");
+
 const path = require("path");
 const fs = require("fs");
 const cloudinary = require("cloudinary");
 const GridFsStorage = require("multer-gridfs-storage");
 const Grid = require("gridfs-stream");
-const { MONGOURI } = require("./config/keys");
+const { MONGOURI, cloud_name, api_key, api_secret } = require("./config/keys");
 const crypto = require("crypto");
 const mongoose = require("mongoose");
 
 cloudinary.config({
-  cloud_name: "duvsvsxhk",
-  api_key: "654997219996181",
-  api_secret: "JBSXu1uEL5oLUu0bD_lOYJ-RZxI",
+  cloud_name: cloud_name,
+  api_key: api_key,
+  api_secret: api_secret,
 });
 
 const router = express.Router();
@@ -23,10 +24,10 @@ router.post("/", (req, res) => {
       return res.status(400).json({ msg: "No files were uploaded." });
 
     const file = req.files.file;
-    if (file.size > 1024 * 1024) {
-      removeTmp(file.tempFilePath);
-      return res.status(400).json({ msg: "Size too large" });
-    }
+    // if (file.size > 1024 * 1024) {
+    //   removeTmp(file.tempFilePath);
+    //   return res.status(400).json({ msg: "Size too large" });
+    // }
 
     if (file.mimetype !== "image/jpeg" && file.mimetype !== "image/png") {
       removeTmp(file.tempFilePath);
