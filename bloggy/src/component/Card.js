@@ -9,7 +9,7 @@ const Card = (props) => {
   const [img, setimg] = useState("");
 
   useEffect(() => {
-    console.log(props.data);
+    document.documentElement.scrollTop = 0;
   }, []);
 
   const mouseMove = () => {

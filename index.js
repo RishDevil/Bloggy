@@ -81,8 +81,7 @@ app.post("/blogcreate", async (req, res) => {
   );
 });
 
-app.get("/blogs", async (req, res) => {
-  console.log("blogggggggg");
+app.get("/blogs", cacheMiddleware(30), async (req, res) => {
   Blog.find((err, data) => {
     if (err) {
       res.status(400).send({ message: err });

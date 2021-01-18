@@ -13,8 +13,6 @@ const SideBar = (props) => {
       }
     >
       <ul className={styles.ul}>
-        <li className={styles.li}>Countries</li>
-        <li className={styles.li}>Places</li>
         {userInfo ? (
           <Link to="/create" style={{ textDecoration: "None" }}>
             <li className={styles.li} onClick={props.click}>

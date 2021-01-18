@@ -48,7 +48,6 @@ const CreateBlog = () => {
         dispatch(blogCreateAction(title, sub_des, place, country, image, des));
         console.log("created");
       }
-      setcreate(false);
     } else {
       alert("fill all details");
     }

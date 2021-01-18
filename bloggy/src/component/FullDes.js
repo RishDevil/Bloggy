@@ -11,7 +11,10 @@ const FullDes = (props) => {
   const dispatch = useDispatch();
 
   const { blog } = useSelector((state) => state.blogDetail);
-  console.log(blog);
+
+  useEffect(() => {
+    document.documentElement.scrollTop = 0;
+  }, []);
   useEffect(() => {
     dispatch(blogDetailAction(id));
   }, [id]);
