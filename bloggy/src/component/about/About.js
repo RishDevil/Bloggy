@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import priya from "./priya.jpg";
+import priya from "../priya.jpg";
 import styles from "./About.module.css";
 const About = () => {
   useEffect(() => {

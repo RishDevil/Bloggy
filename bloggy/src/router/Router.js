@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Route } from "react-router-dom";
 import loadable from "@loadable/component";
-import About from "../component/About";
-import CardPage from "../component/CardPage";
-import CreateBlog from "../component/CreateBlog";
-import FullDes from "../component/FullDes";
-import Signin from "../component/Signin";
-import Register from "../component/Register";
+import About from "../component/about/About";
+import CardPage from "../component/cardContain/CardPage";
+import CreateBlog from "../component/createBlog/CreateBlog";
+import FullDes from "../component/detailPage/FullDes";
+import Signin from "../component/security/Signin";
+import Register from "../component/security/Register";
 
 // const CardPage = loadable(() => import("../component/CardPage"));
 // const CreateBlog = loadable(() => import("../component/CreateBlog"));

@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useMemo, memo, useRef } from "react";
-import styles from "./Home.module.css";
+import styles from "../home/Home.module.css";
 
 // import Card from "./Card";
 import loadable from "@loadable/component";
 import { useSelector, useDispatch } from "react-redux";
-import { blogList, blogSearchAction } from "../action/Blog";
+import { blogList, blogSearchAction } from "../../action/Blog";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 gsap.core.globals("ScrollTrigger", ScrollTrigger);
 
-const Card = loadable(() => import("./Card"));
+const Card = loadable(() => import("../card/Card"));
 
 const CardPage = (props) => {
   console.log("Cardpage");

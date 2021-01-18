@@ -1,72 +1,64 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { register } from "../action/userActions";
+import { signin, unsuccess } from "../../action/userActions";
 import styles from "./Form.module.css";
 
-const Register = (props) => {
-  const [username, setusername] = useState();
+const Signin = (props) => {
+  const dispatch = useDispatch();
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
-  const dispatch = useDispatch();
-  const { rrerror, success } = useSelector((state) => state.userRes);
+  const { serror, userInfo, success } = useSelector((state) => state.userSig);
   const submit = (e) => {
     e.preventDefault();
-    dispatch(register(username, email, password));
-  };
-  useEffect(() => {
-    if (success) props.history.push("/");
-  }, [success]);
 
+    dispatch(signin(email, password));
+  };
+
+  useEffect(() => {
+    if (success) {
+      dispatch(unsuccess());
+      props.history.push("/");
+    }
+  }, [success]);
   return (
     <div className={styles.container}>
       <div className={styles.sign}>
-        <form onSubmit={submit}>
+        <form onSubmit={submit} className={styles.form}>
           <div
             className={styles.error}
-            data-aos="fade-zoom-in"
-            data-aos-delay="100"
+            data-aos="flip-left"
+            data-aos-delay="300"
           >
-            {rrerror}
+            {serror}
           </div>
           <input
-            className="input"
-            onChange={(e) => setusername(e.target.value)}
-            className={styles.input}
-            placeholder="UserName"
             data-aos="fade-zoom-in"
-            data-aos-delay="100"
-          />
-          <br />
-
-          <input
+            data-aos-delay="300"
             className="input"
             onChange={(e) => setemail(e.target.value)}
-            className={styles.input}
-            placeholder="UserName"
             placeholder="Email"
-            data-aos="fade-zoom-in"
-            data-aos-delay="100"
+            className={styles.input}
           />
           <br />
 
           <input
+            data-aos="fade-zoom-in"
+            data-aos-delay="300"
             type="password"
             className="input"
             onChange={(e) => setpassword(e.target.value)}
-            className={styles.input}
             placeholder="Password"
-            data-aos="fade-zoom-in"
-            data-aos-delay="100"
+            className={styles.input}
           />
           <br />
           <button
             type="submit"
             className={styles.button}
             data-aos="fade-zoom-in"
-            data-aos-delay="100"
+            data-aos-delay="300"
           >
-            Register
+            Login
           </button>
         </form>
       </div>
@@ -74,4 +66,4 @@ const Register = (props) => {
   );
 };
 
-export default Register;
+export default Signin;

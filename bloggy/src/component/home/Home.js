@@ -5,13 +5,13 @@ import { IconButton } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
-import SideBar from "./SideBar";
-import CardPage from "./CardPage";
+import SideBar from "../sidebar/SideBar";
+import CardPage from "../cardContain/CardPage";
 import { Link } from "react-router-dom";
-import priya from "./priya.jpg";
+import priya from "../priya.jpg";
 import jquery from "jquery";
 import { useSelector, useDispatch } from "react-redux";
-import { blogList, blogSearchAction } from "../action/Blog";
+import { blogList, blogSearchAction } from "../../action/Blog";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 const Home = (props) => {

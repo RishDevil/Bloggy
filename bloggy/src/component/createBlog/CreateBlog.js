@@ -7,7 +7,7 @@ import {
   blogList,
   blogUpdateAction,
   blogCreateAction,
-} from "../action/Blog";
+} from "../../action/Blog";
 
 const CreateBlog = () => {
   console.log("Createblog");

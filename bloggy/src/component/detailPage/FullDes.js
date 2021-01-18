@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./FullDes.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import { blogDetailAction } from "../action/Blog";
+import { blogDetailAction } from "../../action/Blog";
 
 const FullDes = (props) => {
   console.log("Full Des");
